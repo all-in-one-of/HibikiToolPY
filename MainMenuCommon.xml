@@ -7,26 +7,26 @@
 	<menuBar>
 		<subMenu id="hibikiTool_menu">
 		<label>HibikiTool</label>
-			<subMenu id="hibiki_test_submenu">
-				<label>Test</label>
-				<!-- <separatorItem id="render_create_submenu_sep_redshift"> -->
-					<!-- <insertAfter>h.create_mantra_pbr</insertAfter> -->
-				<!-- </separatorItem> -->
+			<!--<subMenu id="hibiki_test_submenu">-->
+				<!--<label>Test</label>-->
+				<!--&lt;!&ndash; <separatorItem id="render_create_submenu_sep_redshift"> &ndash;&gt;-->
+					<!--&lt;!&ndash; <insertAfter>h.create_mantra_pbr</insertAfter> &ndash;&gt;-->
+				<!--&lt;!&ndash; </separatorItem> &ndash;&gt;-->
 
-				<scriptItem id="hibiki_test_test">
-					<label>Hello</label>
-					<scriptCode><![CDATA[
-print 'xxxx'
-]]></scriptCode>
-				</scriptItem>
-			</subMenu>
+				<!--<scriptItem id="hibiki_test_test">-->
+					<!--<label>Hello</label>-->
+					<!--<scriptCode><![CDATA[-->
+<!--print 'xxxx'-->
+<!--]]></scriptCode>-->
+				<!--</scriptItem>-->
+			<!--</subMenu>-->
 
-			<subMenu id="gogogo">
-				<label>Go</label>
+			<subMenu id="rsConvert">
+				<label>RS Convert</label>
 
 				<scriptItem id="testGo">
 					<label>Out File Test</label>
-                    <scriptPath>./RSConvert/TestHello.py</scriptPath>
+                    <scriptPath>$HIBIKITOOL_PATH/RSConvert/TestHello.py</scriptPath>
 				</scriptItem>
 			</subMenu>
 
