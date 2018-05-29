@@ -4,7 +4,7 @@ class RSConvert:
     @staticmethod
     def convert_fbx2rs(fbxnode):
         for child in fbxnode.children():
-            # print(child.path()+', type:'+child.type().name())
+            print(child.path()+', type:'+child.type().name())
             if child.type().name() == 'v_fbx':
                 # print (child.type())
                 # print child.params()

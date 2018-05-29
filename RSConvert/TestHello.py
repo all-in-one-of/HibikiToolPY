@@ -1,6 +1,11 @@
 import hou
-
-
+import sys
+import os
+pyFileFolderPath = os.path.dirname(sys.argv[0])
+if pyFileFolderPath not in sys.path:
+    sys.path.append(pyFileFolderPath)
+else:
+    print 'exist:',pyFileFolderPath
 
 from RSConvert import RSConvert
 

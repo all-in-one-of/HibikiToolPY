@@ -27,7 +27,7 @@
 				<scriptItem id="testGo">
 					<label>Out File Test</label>
                     <scriptPath>$HIBIKITOOL_PATH/RSConvert/TestHello.py</scriptPath>
-                    <scriptParam
+                    <scriptArgs>3</scriptArgs>
 				</scriptItem>
 
 
