@@ -12,6 +12,12 @@ class BasicFunc(object):
         return result
 
     @staticmethod
+    def get_node_in_children(node, nodeTypeName):
+        for child in node.children():
+            if child.type().name() == nodeTypeName:
+                return child
+
+    @staticmethod
     def print_node(node):
         print "path:", node.path(), " type:"+node.type().name()
 

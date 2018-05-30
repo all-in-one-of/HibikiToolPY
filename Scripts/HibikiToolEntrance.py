@@ -35,6 +35,8 @@ def fbx2rs():
     FBXToRS.convert_selected_fbx2rs()
 
 
+
+
 excute_command(sys.argv)
 
 
