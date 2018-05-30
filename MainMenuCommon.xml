@@ -23,13 +23,16 @@
 
 			<subMenu id="rsConvert">
 				<label>RS Convert</label>
-
-				<scriptItem id="testGo">
-					<label>Out File Test</label>
-                    <scriptPath>$HIBIKITOOL_PATH/RSConvert/TestHello.py</scriptPath>
-                    <scriptArgs>3</scriptArgs>
+				<scriptItem id="testOutput">
+					<label>Print Selected Node</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>0</scriptArgs>
 				</scriptItem>
-
+				<scriptItem id="fbxMatToRS">
+					<label>FBX Shader To RS Shader</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>1</scriptArgs>
+				</scriptItem>
 
 			</subMenu>
 
