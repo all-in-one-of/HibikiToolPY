@@ -21,7 +21,7 @@ class FBXToRS(object):
         rsArchiInsideNode.setNamedInput('diffuse', rsTexNode, 'outColor')
         # rsLightShaderNode = redshiftVopNode.createNode('redshift_light_shader')
         # rsLightShaderNode.setNamedInput('Light Shader',rsTexNode,'outColor')
-        
+
         # rsMulVecNode = redshiftVopNode.createNode('redshift::RSMathMulVector')
         # rsMulVecNode.setNamedInput('input1', rsTexNode, 'outColor')
         # rsMulVecNode.setNamedInput('input2', rsArchiInsideNode, 'outColor')
