@@ -14,21 +14,44 @@ from BasicTools.BasicFunc import BasicFunc
 
 
 def excute_command(argv):
-    cmdIndex = int(argv[1])
-    cmdSwitcher = {
-        0: test,
-        1: fbx2rs
-
+    cmdType = int(argv[1])
+    cmdIndex = int(argv[2])
+    testCmdSwitcher = {
+        -1: reloadPlugin,
+        0: printNodes,
+        1: printParms,
+        2: printInputs,
+        3: printOutputs
     }
-    targetFunc = cmdSwitcher.get(cmdIndex)
+    rsCmdSwitcher = {
+        0: fbx2rs
+    }
+    cmdSwitcher = {
+        0: testCmdSwitcher,
+        1: rsCmdSwitcher
+    }
+
+    targetFunc = cmdSwitcher.get(cmdType).get(cmdIndex)
     if targetFunc is not None:
         targetFunc()
     else:
         print 'None command'
 
+def reloadPlugin():
+    reload(FBXToRS)
+    reload(BasicFunc)
 
-def test():
+def printNodes():
     BasicFunc.print_nodes(hou.selectedNodes())
+
+def printParms():
+    BasicFunc.print_parms(hou.selectedNodes()[0])
+
+def printInputs():
+    BasicFunc.print_inputs(hou.selectedNodes()[0])
+
+def printOutputs():
+    BasicFunc.print_outputs(hou.selectedNodes()[0])
 
 
 def fbx2rs():

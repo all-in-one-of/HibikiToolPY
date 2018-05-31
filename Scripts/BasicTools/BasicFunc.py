@@ -26,5 +26,19 @@ class BasicFunc(object):
         for node in nodes:
             BasicFunc.print_node(node)
 
+    @staticmethod
+    def print_parms(node):
+        for parm in node.parms():
+            print parm
 
+    @staticmethod
+    def print_inputs(node):
+        for inputName in node.inputNames():
+            print '['+inputName+'] from ('
+        # for input in node.inputs():
+        #     print input
 
+    @staticmethod
+    def print_outputs(node):
+        for outputName in node.outputNames():
+            print outputName

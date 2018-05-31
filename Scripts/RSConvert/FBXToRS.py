@@ -7,23 +7,28 @@ class FBXToRS(object):
     def convert_fbx2rs(fbxnode):
 
         fbxShaderNode = BasicFunc.get_node_in_children(fbxnode, 'v_fbx')
+        subOutputNode = BasicFunc.get_node_in_children(fbxnode, 'suboutput')
         mapFilePath = fbxShaderNode.parm('map1').eval()
         rsArchiNode = fbxnode.createNode('rs_architectural')
         rsArchiNode.allowEditingOfContents()
         redshiftVopNode = BasicFunc.get_node_in_children(rsArchiNode, 'redshift_vopnet')
         rsArchiInsideNode = BasicFunc.get_node_in_children(redshiftVopNode, 'redshift::Architectural')
-        print rsArchiInsideNode.path()
-        rsTexNode =  redshiftVopNode.createNode('redshift::TextureSampler')
+        rsSurfInsideOutputNode = BasicFunc.get_node_in_children(redshiftVopNode, 'redshift_material')
+        # print rsArchiInsideNode.path()
+        rsTexNode = redshiftVopNode.createNode('redshift::TextureSampler')
         rsTexNode.parm('tex0').set(mapFilePath)
-        # for child in fbxnode.children():
-        #     print(child.path()+', type:'+child.type().name())
-        #     if child.type().name() == 'v_fbx':
-        #         # print (child.type())
-        #         # print child.params()
-        #         mapFilePath = child.parm('map1').eval()
-        #         # node.createNode('')
-        #         rsArchiNode = fbxnode.createNode('rs_architectural')
-        #         rsArchiNode.allowEditingOfContents()
+
+        rsArchiInsideNode.setNamedInput('diffuse', rsTexNode, 'outColor')
+        # rsLightShaderNode = redshiftVopNode.createNode('redshift_light_shader')
+        # rsLightShaderNode.setNamedInput('Light Shader',rsTexNode,'outColor')
+        
+        # rsMulVecNode = redshiftVopNode.createNode('redshift::RSMathMulVector')
+        # rsMulVecNode.setNamedInput('input1', rsTexNode, 'outColor')
+        # rsMulVecNode.setNamedInput('input2', rsArchiInsideNode, 'outColor')
+        # rsSurfInsideOutputNode.setNamedInput('Surface', rsMulVecNode, 'out')
+        # rsSurfInsideOutputNode.setNamedInput('Surface', rsTexNode, 'outColor')
+        subOutputNode.setNamedInput('Surface Shader', rsArchiNode, 'Surface Shader')
+
 
 
     @staticmethod

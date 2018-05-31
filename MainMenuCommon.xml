@@ -23,18 +23,44 @@
 
 			<subMenu id="rsConvert">
 				<label>RS Convert</label>
-				<scriptItem id="testOutput">
-					<label>Print Selected Node</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
-                    <scriptArgs>0</scriptArgs>
-				</scriptItem>
+
 				<scriptItem id="fbxMatToRS">
 					<label>FBX Shader To RS Shader</label>
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
-                    <scriptArgs>1</scriptArgs>
+                    <scriptArgs>1 0</scriptArgs>
 				</scriptItem>
 
 			</subMenu>
+
+            <subMenu>
+                <label>Test Print</label>
+                <!--<scriptItem id="reload">-->
+					<!--<label>Reload</label>-->
+                    <!--<scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>-->
+                    <!--<scriptArgs>0 -1</scriptArgs>-->
+				<!--</scriptItem>-->
+                <scriptItem id="printNode">
+					<label>Print Selected Node</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>0 0</scriptArgs>
+				</scriptItem>
+                <scriptItem id="printParms">
+                    <label>Print Parms</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>0 1</scriptArgs>
+                </scriptItem>
+                <scriptItem id="printInputs">
+                    <label>Print Inputs</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>0 2</scriptArgs>
+                </scriptItem>
+                <scriptItem id="printOutputs">
+                    <label>Print Outputs</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>0 3</scriptArgs>
+                </scriptItem>
+            </subMenu>
+
 
 		</subMenu>
 
