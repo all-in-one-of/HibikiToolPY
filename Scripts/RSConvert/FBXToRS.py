@@ -17,16 +17,14 @@ class FBXToRS(object):
         # print rsArchiInsideNode.path()
         rsTexNode = redshiftVopNode.createNode('redshift::TextureSampler')
         rsTexNode.parm('tex0').set(mapFilePath)
-
         rsArchiInsideNode.setNamedInput('diffuse', rsTexNode, 'outColor')
-        # rsLightShaderNode = redshiftVopNode.createNode('redshift_light_shader')
-        # rsLightShaderNode.setNamedInput('Light Shader',rsTexNode,'outColor')
-
-        # rsMulVecNode = redshiftVopNode.createNode('redshift::RSMathMulVector')
-        # rsMulVecNode.setNamedInput('input1', rsTexNode, 'outColor')
-        # rsMulVecNode.setNamedInput('input2', rsArchiInsideNode, 'outColor')
-        # rsSurfInsideOutputNode.setNamedInput('Surface', rsMulVecNode, 'out')
-        # rsSurfInsideOutputNode.setNamedInput('Surface', rsTexNode, 'outColor')
+        rsColorSplitterNode = redshiftVopNode.createNode('redshift::RSColorSplitter')
+        rsSubFloatNode = redshiftVopNode.createNode('redshift::RSMathSub')
+        rsColorSplitterNode.setNamedInput('input', rsTexNode, 'outColor')
+        rsSubFloatNode.setNamedInput('input2', rsColorSplitterNode, 'outA')
+        rsSubFloatNode.parm('input1').set(1)
+        rsArchiInsideNode.setNamedInput('transparency', rsSubFloatNode, 'out')
+        rsArchiInsideNode.parm('refr_ior').set(1)
         subOutputNode.setNamedInput('Surface Shader', rsArchiNode, 'Surface Shader')
 
 
