@@ -10,6 +10,7 @@ class FBXToRS(object):
         subOutputNode = BasicFunc.get_node_in_children(fbxnode, 'suboutput')
         mapFilePath = fbxShaderNode.parm('map1').eval()
         rsArchiNode = fbxnode.createNode('rs_architectural')
+        rsArchiNode.parm("reflectivity").set(0)
         rsArchiNode.allowEditingOfContents()
         redshiftVopNode = BasicFunc.get_node_in_children(rsArchiNode, 'redshift_vopnet')
         rsArchiInsideNode = BasicFunc.get_node_in_children(redshiftVopNode, 'redshift::Architectural')
