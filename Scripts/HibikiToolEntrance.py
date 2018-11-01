@@ -11,6 +11,7 @@ else:
 
 from RSConvert.FBXToRS import FBXToRS
 from BasicTools.BasicFunc import BasicFunc
+from NodeModify.CleanNode import CleanNode
 
 
 def excute_command(argv):
@@ -26,9 +27,14 @@ def excute_command(argv):
     rsCmdSwitcher = {
         0: fbx2rs
     }
+
+    nodeCleanCmdSwitcher = {
+        0: cleanAndFreezeNodes
+    }
     cmdSwitcher = {
         0: testCmdSwitcher,
-        1: rsCmdSwitcher
+        1: rsCmdSwitcher,
+        2: nodeCleanCmdSwitcher
     }
 
     targetFunc = cmdSwitcher.get(cmdType).get(cmdIndex)
@@ -57,7 +63,9 @@ def printOutputs():
 def fbx2rs():
     FBXToRS.convert_selected_fbx2rs()
 
-
+def cleanAndFreezeNodes():
+    for node in hou.selectedNodes():
+        CleanNode.clean_and_lock_attr(node)
 
 
 excute_command(sys.argv)

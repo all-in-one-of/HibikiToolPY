@@ -21,6 +21,17 @@
 				<!--</scriptItem>-->
 			<!--</subMenu>-->
 
+            <subMenu id="nodeClean">
+				<label>Node Clean</label>
+
+				<scriptItem id="cleanAndLock">
+					<label>Delete Attributes Of Freeze Node</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>2 0</scriptArgs>
+				</scriptItem>
+
+			</subMenu>
+
 			<subMenu id="rsConvert">
 				<label>RS Convert</label>
 
