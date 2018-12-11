@@ -29,12 +29,22 @@ def excute_command(argv):
     }
 
     nodeCleanCmdSwitcher = {
-        0: cleanAndFreezeNodes
+        0: cleanAndFreezeNodes,
+        1: deletePrimitives
     }
+
+    fbxImportDealSwitcher = {
+        0: scalePositionsDown,
+        1: scalePositionsUp
+    }
+
+
+    #total switch
     cmdSwitcher = {
         0: testCmdSwitcher,
         1: rsCmdSwitcher,
-        2: nodeCleanCmdSwitcher
+        2: nodeCleanCmdSwitcher,
+        3: fbxImportDealSwitcher
     }
 
     targetFunc = cmdSwitcher.get(cmdType).get(cmdIndex)
@@ -67,6 +77,17 @@ def cleanAndFreezeNodes():
     for node in hou.selectedNodes():
         CleanNode.clean_and_lock_attr(node)
 
+def deletePrimitives():
+    for node in hou.selectedNodes():
+        CleanNode.delete_primitives_and_lock(node)
+
+def scalePositionsDown():
+    for node in hou.selectedNodes():
+        CleanNode.scale_positions(node, 0.01)
+
+def scalePositionsUp():
+    for node in hou.selectedNodes():
+        CleanNode.scale_positions(node, 100)
 
 excute_command(sys.argv)
 

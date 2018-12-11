@@ -29,7 +29,26 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
                     <scriptArgs>2 0</scriptArgs>
 				</scriptItem>
+                <scriptItem id="deletePrimitivesAndLock">
+					<label>Delete Primitives Of Freeze Node</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>2 1</scriptArgs>
+				</scriptItem>
+			</subMenu>
 
+            <subMenu id="fbxUseful">
+				<label>Fbx Import Deal</label>
+
+				<scriptItem id="scalePosDown">
+					<label>Scale Positions to 0.01</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>3 0</scriptArgs>
+				</scriptItem>
+                <scriptItem id="scalePosUp">
+					<label>Scale Positions to 100</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>3 1</scriptArgs>
+				</scriptItem>
 			</subMenu>
 
 			<subMenu id="rsConvert">
