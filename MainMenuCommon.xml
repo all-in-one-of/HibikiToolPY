@@ -34,6 +34,12 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
                     <scriptArgs>2 1</scriptArgs>
 				</scriptItem>
+                <scriptItem id="bakeNodesWithFirst">
+					<label>Bake Nodes With First</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>2 2</scriptArgs>
+				</scriptItem>
+
 			</subMenu>
 
             <subMenu id="fbxUseful">

@@ -30,7 +30,8 @@ def excute_command(argv):
 
     nodeCleanCmdSwitcher = {
         0: cleanAndFreezeNodes,
-        1: deletePrimitives
+        1: deletePrimitives,
+        2: bakeNodesWithFirst
     }
 
     fbxImportDealSwitcher = {
@@ -88,6 +89,11 @@ def scalePositionsDown():
 def scalePositionsUp():
     for node in hou.selectedNodes():
         CleanNode.scale_positions(node, 100)
+
+def bakeNodesWithFirst():
+    nodesSelected = hou.selectedNodes()
+    CleanNode.bake_for_nodes(nodesSelected[0], nodesSelected[1:])
+
 
 excute_command(sys.argv)
 

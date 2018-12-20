@@ -33,11 +33,9 @@ class CleanNode(object):
 
     @staticmethod
     def delete_primitives_and_lock(node):
-
         node.setHardLocked(True)
         geo = node.geometry().freeze()
         geo.deletePrims(geo.prims(), True)
-
 
     @staticmethod
     def scale_positions(node, scaleFactor):
@@ -49,4 +47,15 @@ class CleanNode(object):
             pList[i] *= scaleFactor
         geo.setPointFloatAttribValues('P', tuple(pList))
 
+    @staticmethod
+    def bake_for_nodes(dealNode, targetNodes):
+        for targetNode in targetNodes:
+            #lock
+            targetNode.setHardLocked(True)
+            dealNode.setHardLocked(False)
+            BasicFunc.connect_node(targetNode, dealNode)
+            dealNode.setHardLocked(True)
+            BasicFunc.connect_node(dealNode,targetNode)
+            targetNode.setHardLocked(False)
+            targetNode.setHardLocked(True)
 

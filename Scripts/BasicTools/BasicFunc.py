@@ -2,6 +2,13 @@ import hou
 
 class BasicFunc(object):
 
+    @staticmethod
+    def setWorldPos(objNode, x, y, z, fail_on_locked_parms = False):
+        worldTrans = objNode.worldTransform()
+        worldTrans.setAt(3, 0, x)
+        worldTrans.setAt(3, 1, y)
+        worldTrans.setAt(3, 2, z)
+        objNode.setWorldTransform(worldTrans, fail_on_locked_parms)
 
     @staticmethod
     def create_deleteAttr_after(node, pointAttr = '*', vertAttr='*', primAttr='*',detailAttr='*'):
@@ -23,7 +30,11 @@ class BasicFunc(object):
             targetConnection.inputNode().setNamedInput(targetConnection.inputName(), newNode, newNodeOutputName)
         return newNode
 
-
+    @staticmethod
+    def connect_node(sourceNode, targetNode, sourceOutputIndex = 0, targetNodeInputIndex = 0):
+        sourceOutputName = sourceNode.outputNames()[sourceOutputIndex]
+        inputName = targetNode.inputNames()[targetNodeInputIndex]
+        targetNode.setNamedInput(inputName, sourceNode, sourceOutputName)
 
     @staticmethod
     def get_nodes_in_children(node, nodeTypeName):
