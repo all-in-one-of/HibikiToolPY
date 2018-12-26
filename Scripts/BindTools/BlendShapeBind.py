@@ -1,6 +1,7 @@
+import sys
 import hou
-from Scripts.BasicTools.BasicFunc import BasicFunc
 
+# from ..BasicTools.BasicFunc import BasicFunc
 class BlendShapeBind(object):
     @staticmethod
     def setBlendShapeControl(bsNode, ctlNode = None):
@@ -12,11 +13,10 @@ class BlendShapeBind(object):
             if ctlNode is None:
                 print 'wrong path:', containerNodePath
 
-        useExist = node.parm('useExist').eval()
+        useExist = bsNode.parm('useExist').eval()
 
-        ctlNode = hou.node('/obj/geo1')
-        # ctlNode.parm('tx').set(ctlNode.parm('ty'))
-        bsNode = hou.node('../blendshapes1')
+        #ctlNode = hou.node('/obj/geo1')
+        #bsNode = hou.node('../blendshapes1')
         count = 0
         blendParms = []
         for parm in bsNode.parms():
@@ -65,3 +65,19 @@ class BlendShapeBind(object):
             blendParms[i + 1].deleteAllKeyframes()
             blendParms[i + 1].set(ctlParm)
             # ctlParm.deleteAllKeyframes()
+
+
+def execute_command(argv):
+    cmdType = int(argv[1])
+    if cmdType == 'BindBlendShapeControl':
+        slNodes = hou.selectedNodes()
+        print 'execute for node:', slNodes
+        if len(slNodes) > 0:
+            bsNode = slNodes[0]
+            BlendShapeBind.setBlendShapeControl(bsNode)
+    elif cmdType == 0:
+        pass
+
+
+if __name__ == '__main__':
+    execute_command(sys.argv)

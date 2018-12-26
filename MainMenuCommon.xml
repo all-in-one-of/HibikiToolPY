@@ -42,6 +42,17 @@
 
 			</subMenu>
 
+            <subMenu id="bindTool">
+				<label>Bind Tool</label>
+
+				<scriptItem id="blendShapeBindControl">
+					<label>BlendShape Bind Control</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
+                    <scriptArgs>BindBlendShapeControl</scriptArgs>
+				</scriptItem>
+
+			</subMenu>
+
             <subMenu id="fbxUseful">
 				<label>Fbx Import Deal</label>
 
