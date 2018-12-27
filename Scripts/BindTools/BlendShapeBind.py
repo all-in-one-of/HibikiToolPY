@@ -4,16 +4,21 @@ import hou
 # from ..BasicTools.BasicFunc import BasicFunc
 class BlendShapeBind(object):
     @staticmethod
-    def setBlendShapeControl(bsNode, ctlNode = None):
+    def setBlendShapeControl(bsNode, useExist = True, ctlNode = None):
         if ctlNode is None:
             bsNodePath = bsNode.path()
             nodePathParts = bsNodePath.split('/')
-            containerNodePath = '/'+nodePathParts[0]+'/'+nodePathParts[1]
+            #print 'nodePathParts:', nodePathParts[0:3]
+            containerNodePath = '/'.join(nodePathParts[0:3])# '/'+nodePathParts[0]+'/'+nodePathParts[1]+'/'+nodePathParts[2]
+            #print 'containerNodePath:', containerNodePath
             ctlNode = hou.node(containerNodePath)
             if ctlNode is None:
                 print 'wrong path:', containerNodePath
+            else:
+                #print 'ctlNode:', ctlNode
+                pass
 
-        useExist = bsNode.parm('useExist').eval()
+        #useExist = bsNode.parm('useExist').eval()
 
         #ctlNode = hou.node('/obj/geo1')
         #bsNode = hou.node('../blendshapes1')
@@ -26,8 +31,7 @@ class BlendShapeBind(object):
                 count = count - 1
             elif parm.name() == 'nblends':
                 count = parm.eval()
-
-                print 'find nblends'
+                # print 'find nblends'
         parm_group = ctlNode.parmTemplateGroup()
         folderName = bsNode.name()
         createFolder = 0
@@ -39,7 +43,7 @@ class BlendShapeBind(object):
         for parm in blendParms[1:]:
             parmTemp = parm.parmTemplate()
             currentParmTempName = parmTemp.name()
-            print 'want add:', currentParmTempName
+            # print 'want add:', currentParmTempName
             if not ctlNode.parm(currentParmTempName) is None:
                 if useExist:
                     pass
@@ -68,16 +72,24 @@ class BlendShapeBind(object):
 
 
 def execute_command(argv):
-    cmdType = int(argv[1])
-    if cmdType == 'BindBlendShapeControl':
+    cmdType = argv[1]
+    #print 'cdmType:', cmdType
+    if cmdType == 'BindBSControlOnTopObj':
         slNodes = hou.selectedNodes()
-        print 'execute for node:', slNodes
+        # print 'execute for node:', slNodes
         if len(slNodes) > 0:
             bsNode = slNodes[0]
-            BlendShapeBind.setBlendShapeControl(bsNode)
-    elif cmdType == 0:
-        pass
+            if bsNode.type().name() == 'blendshapes::2.0':
+                BlendShapeBind.setBlendShapeControl(bsNode)
+    elif cmdType == 'BindBSControlOnSecond':
+        slNodes = hou.selectedNodes()
+        if len(slNodes) == 2:
+            bsNode = slNodes[0]
+            ctlNode = slNodes[1]
+            if bsNode.type().name() == 'blendshapes::2.0':
+                BlendShapeBind.setBlendShapeControl(bsNode, True, ctlNode)
 
 
-if __name__ == '__main__':
-    execute_command(sys.argv)
+
+execute_command(sys.argv)
+

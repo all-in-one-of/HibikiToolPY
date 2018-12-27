@@ -45,10 +45,15 @@
             <subMenu id="bindTool">
 				<label>Bind Tool</label>
 
-				<scriptItem id="blendShapeBindControl">
+				<scriptItem id="bindBSControlOnTopObj">
 					<label>BlendShape Bind Control</label>
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
-                    <scriptArgs>BindBlendShapeControl</scriptArgs>
+                    <scriptArgs>BindBSControlOnTopObj</scriptArgs>
+				</scriptItem>
+                <scriptItem id="bindBSControlOnSecond">
+					<label>BlendShape Bind Control On Second Selected</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
+                    <scriptArgs>BindBSControlOnSecond</scriptArgs>
 				</scriptItem>
 
 			</subMenu>
