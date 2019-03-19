@@ -55,6 +55,11 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
                     <scriptArgs>BindBSControlOnSecond</scriptArgs>
 				</scriptItem>
+                <scriptItem id="jointsToBones">
+					<label>Joints Weight To Bones</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
+                    <scriptArgs>test</scriptArgs>
+				</scriptItem>
 
 			</subMenu>
 

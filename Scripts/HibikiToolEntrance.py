@@ -14,7 +14,7 @@ from BasicTools.BasicFunc import BasicFunc
 from NodeModify.CleanNode import CleanNode
 
 
-def excute_command(argv):
+def execute_command(argv):
     cmdType = int(argv[1])
     cmdIndex = int(argv[2])
     testCmdSwitcher = {
@@ -94,7 +94,8 @@ def bakeNodesWithFirst():
     nodesSelected = hou.selectedNodes()
     CleanNode.bake_for_nodes(nodesSelected[0], nodesSelected[1:])
 
-
-excute_command(sys.argv)
-
+if __name__ == '__main__' or __name__ == '__builtin__':
+    execute_command(sys.argv)
+else:
+    print __name__
 
