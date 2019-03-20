@@ -81,8 +81,12 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
                     <scriptArgs>1 0</scriptArgs>
 				</scriptItem>
-
-			</subMenu>
+                <scriptItem id="fbxMatToPrinciple">
+                    <label>FBX Shader To Principle Shader</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>1 1</scriptArgs>
+                </scriptItem>
+            </subMenu>
 
             <subMenu>
                 <label>Test Print</label>
