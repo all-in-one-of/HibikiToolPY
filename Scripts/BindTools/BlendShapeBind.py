@@ -42,7 +42,7 @@ class BlendShapeBind(object):
         resultParmNames = []
         for parm in blendParms[1:]:
             parmTemp = parm.parmTemplate()
-            currentParmTempName = parmTemp.name()
+            currentParmTempName = parm.alias()
             # print 'want add:', currentParmTempName
             if not ctlNode.parm(currentParmTempName) is None:
                 if useExist:

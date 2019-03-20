@@ -75,3 +75,7 @@ class BasicFunc(object):
     def print_outputs(node):
         for outputName in node.outputNames():
             print outputName
+
+    @staticmethod
+    def adjustLayout(node,relative_to_inputs=True, move_inputs=False, move_outputs=True, move_unconnected=False):
+        node.moveToGoodPosition(relative_to_inputs,move_inputs,move_outputs,move_unconnected)
