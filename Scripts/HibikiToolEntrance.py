@@ -26,6 +26,7 @@ def excute_command(argv):
     }
     rsCmdSwitcher = {
         0: fbx2rs
+        1: fbx2principle
     }
 
     nodeCleanCmdSwitcher = {
@@ -73,6 +74,10 @@ def printOutputs():
 
 def fbx2rs():
     FBXToRS.convert_selected_fbx2rs()
+
+def fbx2principle():
+    for node in hou.selectedNodes():
+        FBXToRS.convert_fbx2principle(node)
 
 def cleanAndFreezeNodes():
     for node in hou.selectedNodes():
