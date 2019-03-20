@@ -25,7 +25,7 @@ def execute_command(argv):
         3: printOutputs
     }
     rsCmdSwitcher = {
-        0: fbx2rs
+        0: fbx2rs,
         1: fbx2principle
     }
 

@@ -11,6 +11,15 @@ class BasicFunc(object):
         objNode.setWorldTransform(worldTrans, fail_on_locked_parms)
 
     @staticmethod
+    def alignWorldPos(node, target, fail_on_locked_parms = False):
+        worldTrans = node.worldTransform()
+        targetWorldTrans = target.worldTransform()
+        worldTrans.setAt(3,0,targetWorldTrans.at(3,0))
+        worldTrans.setAt(3,1,targetWorldTrans.at(3,1))
+        worldTrans.setAt(3,2,targetWorldTrans.at(3,2))
+        node.setWorldTransform(worldTrans, fail_on_locked_parms)
+
+    @staticmethod
     def create_deleteAttr_after(node, pointAttr = '*', vertAttr='*', primAttr='*',detailAttr='*'):
         # type : (hou.Node, str, str,str,str)->hou.Node
         # node = hou.Node()
@@ -79,3 +88,8 @@ class BasicFunc(object):
     @staticmethod
     def adjustLayout(node,relative_to_inputs=True, move_inputs=False, move_outputs=True, move_unconnected=False):
         node.moveToGoodPosition(relative_to_inputs,move_inputs,move_outputs,move_unconnected)
+
+    @staticmethod
+    def layoutChildren(parentNode, childrenNodes = (),horizonOffset = -1,verticalOffset = -1):
+
+        parentNode.layoutChildren(childrenNodes, horizonOffset, verticalOffset)
