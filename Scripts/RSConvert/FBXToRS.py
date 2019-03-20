@@ -35,3 +35,45 @@ class FBXToRS(object):
         for node in hou.selectedNodes():
             FBXToRS.convert_fbx2rs(node)
 
+    @staticmethod
+    def convert_fbx2principle(fbxNode):
+        selected = hou.selectedNodes()
+        matnet = fbxNode.createNode('matnet')
+        newMatDic = {}
+        for child in fbxNode.children():
+            shopMatPathParm = child.parm('shop_materialpath')
+            matPath = shopMatPathParm.eval()
+            if len(matPath) == 0:
+                continue
+            # print 'matPath:',matPath
+            matNode = child.node(matPath)
+            print 'matNode:', matNode
+            matNodeFullPath = matNode.path()
+            # seek for exist
+            psdNodePath = ''
+            if matNodeFullPath in newMatDic:
+                psdNodePath = newMatDic[matNodeFullPath]
+            else:
+                psdNode = matnet.createNode('principledshader::2.0')
+                FBXToRS.CopyFbxMatToPrinciple(matNode, psdNode, True)
+                psdNodePath = psdNode.path()
+                newMatDic[matNodeFullPath] = psdNodePath
+            shopMatPathParm.set(psdNodePath)
+
+
+    @staticmethod
+    def CopyFbxMatToPrinciple(fbxMatNode, psdNode, copyName=False):
+        if copyName:
+            psdNode.setName(fbxMatNode.name())
+        fbxShaderNode = BasicFunc.get_node_in_children(fbxMatNode, 'v_fbx')
+        mapFilePath = fbxShaderNode.parm('map1').eval()
+        cdr = fbxShaderNode.parm('Cdr').eval()
+        cdg = fbxShaderNode.parm('Cdg').eval()
+        cdb = fbxShaderNode.parm('Cdb').eval()
+        psdNode.parm('basecolorr').set(cdr)
+        psdNode.parm('basecolorg').set(cdg)
+        psdNode.parm('basecolorb').set(cdb)
+        texPath = fbxShaderNode.parm('map1').eval()
+        if len(texPath) > 0:
+            psdNode.parm('basecolor_useTexture').set(1)
+            psdNode.parm('basecolor_texture').set(texPath)
