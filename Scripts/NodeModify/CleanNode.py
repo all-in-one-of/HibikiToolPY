@@ -48,6 +48,29 @@ class CleanNode(object):
         geo.setPointFloatAttribValues('P', tuple(pList))
 
     @staticmethod
+    def scale_bones(node, scaleFactor, hierachy = True):
+        if hierachy:
+            stack = []
+            stack.append(node)
+            while len(stack) > 0:
+                currentNode = stack.pop()
+                outputs = currentNode.outputs()
+                if outputs:
+                    for child in outputs:
+                        stack.append(child)
+                if currentNode.type().name() == 'bone':
+                    print 'set for ',currentNode
+                    currentValue = currentNode.parm('length').eval()
+                    currentNode.parm('length').set(currentValue * scaleFactor)
+        else:
+            print 'set single for ',node
+            if node.type().name() == 'bone':
+                currentValue = node.parm('length').eval()
+                node.parm('length').set(currentValue * scaleFactor)
+
+
+
+    @staticmethod
     def bake_for_nodes(dealNode, targetNodes):
         for targetNode in targetNodes:
             #lock

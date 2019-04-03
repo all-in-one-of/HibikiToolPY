@@ -60,7 +60,11 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
                     <scriptArgs>test</scriptArgs>
 				</scriptItem>
-
+                <scriptItem id="splitSubMeshes">
+					<label>Split Submeshes To New Geos</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/SplitMesh.py</scriptPath>
+                    <scriptArgs>test</scriptArgs>
+				</scriptItem>
 			</subMenu>
 
             <subMenu id="fbxUseful">
@@ -75,6 +79,16 @@
 					<label>Scale Positions to 100</label>
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
                     <scriptArgs>3 1</scriptArgs>
+				</scriptItem>
+                <scriptItem id="scaleBoneDown">
+					<label>Scale Bones to 0.01</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>3 2</scriptArgs>
+				</scriptItem>
+                <scriptItem id="scaleBoneUp">
+					<label>Scale Bones to 100</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/HibikiToolEntrance.py</scriptPath>
+                    <scriptArgs>3 3</scriptArgs>
 				</scriptItem>
 			</subMenu>
 

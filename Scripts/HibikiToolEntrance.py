@@ -37,7 +37,9 @@ def execute_command(argv):
 
     fbxImportDealSwitcher = {
         0: scalePositionsDown,
-        1: scalePositionsUp
+        1: scalePositionsUp,
+        2: scaleBonesDown,
+        3: scaleBonesUp
     }
 
 
@@ -94,6 +96,14 @@ def scalePositionsDown():
 def scalePositionsUp():
     for node in hou.selectedNodes():
         CleanNode.scale_positions(node, 100)
+
+def scaleBonesDown():
+    for node in hou.selectedNodes():
+        CleanNode.scale_bones(node, 0.01, True)
+
+def scaleBonesUp():
+    for node in hou.selectedNodes():
+        CleanNode.scale_bones(node, 100, True)
 
 def bakeNodesWithFirst():
     nodesSelected = hou.selectedNodes()
