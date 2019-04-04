@@ -58,7 +58,12 @@
                 <scriptItem id="jointsToBones">
 					<label>Joints Weight To Bones</label>
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
-                    <scriptArgs>test</scriptArgs>
+                    <scriptArgs>jtb</scriptArgs>
+				</scriptItem>
+                <scriptItem id="selectEndBones">
+					<label>Select End Bones</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
+                    <scriptArgs>seb</scriptArgs>
 				</scriptItem>
                 <scriptItem id="splitSubMeshes">
 					<label>Split Submeshes To New Geos</label>

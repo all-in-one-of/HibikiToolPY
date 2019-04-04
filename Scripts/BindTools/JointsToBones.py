@@ -219,16 +219,39 @@ class JointsToBones(object):
                     BasicFunc.connect_node(attrCopyNode, currentRenderNode)
 
 
+    @staticmethod
+    def SelectEndJointsInHierachy(rootBone):
+        stack = []
+        endBones = []
+        stack.append(rootBone)
+        while len(stack) > 0:
+            currentNode = stack.pop()
+            nodeOutputs = currentNode.outputs()
+            if nodeOutputs is not None and len(nodeOutputs) > 0:
+                for child in nodeOutputs:
+                    stack.append(child)
+            else:
+                endBones.append(currentNode)
+        #hou.Node.setSelected(endBones,True,True)
+        #hou.SceneViewer.setCurrentGeometrySelection('bone', endBones)
+
+        for i in range(len(endBones)):
+            endBones[i].setSelected(True, i == 0, False)
+
 
 
 def execute_command(argv):
     cmdType = argv[1]
     #print 'cdmType:', cmdType
     selected = hou.selectedNodes()
-    #for fbxNode in selected:
-    #    JointsToBones.ConvertJointsToBones(fbxNode)
-    for rootNode in selected:
-        JointsToBones.ConvertJointsToBones_Hierachy(rootNode)
+    if cmdType == 'jtb':
+        # for fbxNode in selected:
+        #    JointsToBones.ConvertJointsToBones(fbxNode)
+        for rootNode in selected:
+            JointsToBones.ConvertJointsToBones_Hierachy(rootNode)
+    elif cmdType == 'seb':
+        JointsToBones.SelectEndJointsInHierachy(selected[0])
+
 
 if __name__ == '__main__' or  __name__ == '__builtin__':
     execute_command(sys.argv)
