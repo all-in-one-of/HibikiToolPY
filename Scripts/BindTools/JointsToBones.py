@@ -187,6 +187,7 @@ class JointsToBones(object):
                 BasicFunc.connect_node(nullNode, endBoneNode)
                 endBoneNode.parm('length').set(0)
                 BasicFunc.adjustLayout(endBoneNode)
+                BasicFunc.alignWorldPos(endBoneNode, nullNode)
                 endBoneNode.parm('keeppos').set(True)
                 realBoneList.append(endBoneNode)
                 newNames.append(nullNode.name())

@@ -64,6 +64,7 @@ def reloadPlugin():
 def printNodes():
     BasicFunc.print_nodes(hou.selectedNodes())
 
+
 def printParms():
     BasicFunc.print_parms(hou.selectedNodes()[0])
 

@@ -66,6 +66,13 @@ class BasicFunc(object):
             kpParm.set(keeppos)
 
     @staticmethod
+    def set_children_transform_keeppos(node, keeppos = True):
+        outputs = node.outputs()
+        if outputs:
+            for child in outputs:
+                BasicFunc.set_transform_keeppos(child, keeppos)
+
+    @staticmethod
     def print_node(node):
         print "path:", node.path(), " type:"+node.type().name()
 

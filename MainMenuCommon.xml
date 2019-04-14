@@ -70,6 +70,11 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/SplitMesh.py</scriptPath>
                     <scriptArgs>test</scriptArgs>
 				</scriptItem>
+                <scriptItem id="removeUnusedBonesInSelected">
+					<label>Delete unused bones in selected</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
+                    <scriptArgs>selected</scriptArgs>
+				</scriptItem>
 			</subMenu>
 
             <subMenu id="fbxUseful">
