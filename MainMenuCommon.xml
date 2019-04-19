@@ -80,6 +80,14 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
                     <scriptArgs>printUsed</scriptArgs>
 				</scriptItem>
+                <subMenu id="bindHair">
+                    <label>Hair</label>
+                    <scriptItem id="convertHairBones">
+                        <label>Convert Hair Bones</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/HairControl.py</scriptPath>
+                        <scriptArgs>chb</scriptArgs>
+                    </scriptItem>
+                </subMenu>
 			</subMenu>
 
             <subMenu id="fbxUseful">

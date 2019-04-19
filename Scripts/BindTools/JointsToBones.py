@@ -71,7 +71,7 @@ class JointsToBones(object):
                             child.parm('keeppos').set(True)
                             endBone = fbxNode.createNode('bone')
                             endBone.parm('length').set(0)
-                            BasicFunc.connect_node(child,endBone)
+                            BasicFunc.connect_node(child, endBone)
                             endBone.parm('keeppos').set(True)
                             BasicFunc.adjustLayout(endBone)
                             newNodes.append(endBone)

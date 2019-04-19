@@ -11,6 +11,15 @@ class BasicFunc(object):
         objNode.setWorldTransform(worldTrans, fail_on_locked_parms)
 
     @staticmethod
+    def getWorldPos(objNode):
+        if objNode:
+            worldTrans = objNode.worldTransform()
+            return hou.Vector3(worldTrans.at(3,0),worldTrans.at(3,1),worldTrans.at(3,2))
+        else:
+            return None
+
+
+    @staticmethod
     def alignWorldPos(node, target, fail_on_locked_parms = False):
         worldTrans = node.worldTransform()
         targetWorldTrans = target.worldTransform()
@@ -18,6 +27,14 @@ class BasicFunc(object):
         worldTrans.setAt(3,1,targetWorldTrans.at(3,1))
         worldTrans.setAt(3,2,targetWorldTrans.at(3,2))
         node.setWorldTransform(worldTrans, fail_on_locked_parms)
+
+    # @staticmethod
+    # def updateGeoPointAttr(freezeGeo, attrName, attribType,  ptnum, attrValue):
+    #     if freezeGeo:
+    #         attr = freezeGeo.findPointAttrib(attrName)
+    #         if not attr:
+    #             attr = freezeGeo.addAttrib(attribType, attrName, )
+
 
     @staticmethod
     def create_deleteAttr_after(node, pointAttr = '*', vertAttr='*', primAttr='*',detailAttr='*'):
