@@ -70,13 +70,34 @@ class RemoveUnusedBones(object):
             if boneCregionName not in usedBoneSet:
                 print 'not in:', boneCregionName
                 if boneNode.inputs():
-                    RemoveUnusedBones.DeleteBoneButKeepChildren(boneNode)
+                    useful = False
+                    for outNode in boneNode.outputs():
+                        if outNode.type().name() == 'geo':
+                            print 'not used but is geo parent'
+                            useful = True
+                            break
+                    if not useful:
+                        RemoveUnusedBones.DeleteBoneButKeepChildren(boneNode)
 
     @staticmethod
     def DeleteBoneButKeepChildren(boneNode):
         BasicFunc.set_children_transform_keeppos(boneNode)
         boneNode.destroy()
 
+
+    @staticmethod
+    def PrintUsed(boneNode):
+        if not boneNode:
+            return
+        stageNode = boneNode.parent()
+        boneName = boneNode.name()
+        boneCregionName = boneName + '/cregion 0'
+        for node in stageNode.children():
+            nodeTypeName = node.type().name()
+            if nodeTypeName == 'geo':
+                usedBoneSet = RemoveUnusedBones.GetCaptBoneNamesSet(node)
+                if boneCregionName in usedBoneSet:
+                    print boneName, ' used in ' ,node.name()
 
 
 
@@ -88,6 +109,9 @@ def execute_command(argv):
         # for fbxNode in selected:
         #    JointsToBones.ConvertJointsToBones(fbxNode)
         RemoveUnusedBones.RemoveUnused(selected)
+    elif cmdType == 'printUsed':
+        if selected:
+            RemoveUnusedBones.PrintUsed(selected[0])
 
 
 if __name__ == '__main__' or  __name__ == '__builtin__':

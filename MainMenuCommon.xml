@@ -75,6 +75,11 @@
                     <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
                     <scriptArgs>selected</scriptArgs>
 				</scriptItem>
+                <scriptItem id="printUsedBonesInSelected">
+					<label>Print Used Geo of Selected Bone</label>
+                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
+                    <scriptArgs>printUsed</scriptArgs>
+				</scriptItem>
 			</subMenu>
 
             <subMenu id="fbxUseful">
