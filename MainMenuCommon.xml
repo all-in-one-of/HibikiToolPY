@@ -44,42 +44,62 @@
 
             <subMenu id="bindTool">
 				<label>Bind Tool</label>
+                <subMenu id="blendShapeBind">
+                    <label>Blend Shape</label>
+                    <scriptItem id="bindBSControlOnTopObj">
+                        <label>BlendShape Bind Control</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
+                        <scriptArgs>BindBSControlOnTopObj</scriptArgs>
+                    </scriptItem>
+                    <scriptItem id="bindBSControlOnSecond">
+                        <label>BlendShape Bind Control On Second Selected</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
+                        <scriptArgs>BindBSControlOnSecond</scriptArgs>
+                    </scriptItem>
+                </subMenu>
+                <subMenu>
+                    <label>Joint/Bone Manage</label>
+                    <scriptItem id="jointsToBones">
+                        <label>Joints Weight To Bones</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
+                        <scriptArgs>jtb</scriptArgs>
+                    </scriptItem>
+                    <scriptItem id="selectEndBones">
+                        <label>Select End Bones</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
+                        <scriptArgs>seb</scriptArgs>
+                    </scriptItem>
+                    <scriptItem id="removeUnusedBonesInSelected">
+                        <label>Delete unused bones in selected</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
+                        <scriptArgs>selected</scriptArgs>
+                    </scriptItem>
+                    <scriptItem id="printUsedBonesInSelected">
+                        <label>Print Used Geo of Selected Bone</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
+                        <scriptArgs>printUsed</scriptArgs>
+                    </scriptItem>
+                </subMenu>
+                <subMenu>
+                    <label>Sub Mesh</label>
+                    <scriptItem id="splitSubMeshes">
+                        <label>Split Submeshes To New Geos</label>
+                        <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/SplitMesh.py</scriptPath>
+                        <scriptArgs>test</scriptArgs>
+                    </scriptItem>
+                </subMenu>
+                <subMenu>
+                    <label>Human Control</label>
+                    <subMenu>
+                        <label>Finger FK</label>
+                        <scriptItem id="printUsedBonesInSelected">
+                            <label>Print Used Geo of Selected Bone</label>
+                            <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/HumanControl.py</scriptPath>
+                            <scriptArgs>fk</scriptArgs>
+                        </scriptItem>
+                    </subMenu>
+                </subMenu>
 
-				<scriptItem id="bindBSControlOnTopObj">
-					<label>BlendShape Bind Control</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
-                    <scriptArgs>BindBSControlOnTopObj</scriptArgs>
-				</scriptItem>
-                <scriptItem id="bindBSControlOnSecond">
-					<label>BlendShape Bind Control On Second Selected</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/BlendShapeBind.py</scriptPath>
-                    <scriptArgs>BindBSControlOnSecond</scriptArgs>
-				</scriptItem>
-                <scriptItem id="jointsToBones">
-					<label>Joints Weight To Bones</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
-                    <scriptArgs>jtb</scriptArgs>
-				</scriptItem>
-                <scriptItem id="selectEndBones">
-					<label>Select End Bones</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/JointsToBones.py</scriptPath>
-                    <scriptArgs>seb</scriptArgs>
-				</scriptItem>
-                <scriptItem id="splitSubMeshes">
-					<label>Split Submeshes To New Geos</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/SplitMesh.py</scriptPath>
-                    <scriptArgs>test</scriptArgs>
-				</scriptItem>
-                <scriptItem id="removeUnusedBonesInSelected">
-					<label>Delete unused bones in selected</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
-                    <scriptArgs>selected</scriptArgs>
-				</scriptItem>
-                <scriptItem id="printUsedBonesInSelected">
-					<label>Print Used Geo of Selected Bone</label>
-                    <scriptPath>$HIBIKITOOL_PATH/Scripts/BindTools/RemoveUnusedBones.py</scriptPath>
-                    <scriptArgs>printUsed</scriptArgs>
-				</scriptItem>
                 <subMenu id="bindHair">
                     <label>Hair</label>
                     <scriptItem id="convertHairBones">

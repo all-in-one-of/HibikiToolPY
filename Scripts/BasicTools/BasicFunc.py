@@ -63,6 +63,44 @@ class BasicFunc(object):
         targetNode.setNamedInput(inputName, sourceNode, sourceOutputName)
 
     @staticmethod
+    def create_null_at_obj(targetNode, nodeName = None):
+        selfPos = BasicFunc.getWorldPos(targetNode)
+        earth = targetNode.parent()
+        print earth
+        ctl = earth.createNode('null')
+        if nodeName is None:
+            nodeName = 'ctl_' + targetNode.name()
+        ctl.setName(nodeName)
+        BasicFunc.set_transform_keeppos(ctl)
+        BasicFunc.setWorldPos(ctl, selfPos[0], selfPos[1], selfPos[2])
+        return ctl
+
+    @staticmethod
+    def get_look_at_matrix(selfPos, targetPos, upDirection):
+        zaxis = hou.Vector3(targetPos - selfPos).normalized()
+        xaxis = upDirection.cross(zaxis).normalized()
+        yaxis = zaxis.cross(xaxis)
+        resultMatrix = hou.Matrix4()
+        resultMatrix.setAt(0, 0, xaxis.x())
+        resultMatrix.setAt(0, 1, yaxis.x())
+        resultMatrix.setAt(0, 2, zaxis.x())
+        resultMatrix.setAt(0, 3, 0)
+        resultMatrix.setAt(1, 0, xaxis.y())
+        resultMatrix.setAt(1, 1, yaxis.y())
+        resultMatrix.setAt(1, 2, zaxis.y())
+        resultMatrix.setAt(1, 3, 0)
+        resultMatrix.setAt(2, 0, xaxis.z())
+        resultMatrix.setAt(2, 1, yaxis.z())
+        resultMatrix.setAt(2, 2, zaxis.z())
+        resultMatrix.setAt(2, 3, 0)
+        resultMatrix.setAt(3, 0, 0)#-xaxis.dot(selfPos))
+        resultMatrix.setAt(3, 1, 0)#-yaxis.dot(selfPos))
+        resultMatrix.setAt(3, 2, 0)#-zaxis.dot(selfPos))
+        resultMatrix.setAt(3, 3, 1)
+        return resultMatrix
+
+
+    @staticmethod
     def get_nodes_in_children(node, nodeTypeName):
         result = []
         for child in node.children():
