@@ -14,20 +14,30 @@ class HumanControl(object):
 
     @staticmethod
     def AddFKControl(boneNode):
-        #x to next, y to world up, that's all!
-        if boneNode.type().name() != 'bone':
-            print 'not bone:', boneNode.name()
-            return
+        # x to next, y to world up, that's all!
 
         boneTransformMatrix = boneNode.worldTransform()
+        #print '111'
         ctl = BasicFunc.create_null_at_obj(boneNode)
-        lookAtNode = None
-        nodeOutputs = boneNode.outputs()
-        if nodeOutputs is not None and len(nodeOutputs) > 0:
-            lookAtNode = nodeOutputs[0]
+        #print '222'
+        ctl.parm('controltype').set(1)
+        boneLen = boneNode.parm('length').eval()
+        ctl.parm('geoscale').set(boneLen)
+
+        # lookAtNode = None
+        # nodeOutputs = boneNode.outputs()
+        # if nodeOutputs is not None and len(nodeOutputs) > 0:
+        #     lookAtNode = nodeOutputs[0]
         selfPos = BasicFunc.getWorldPos(boneNode)
-        targetPos = BasicFunc.getWorldPos(lookAtNode)
-        #this kind of way is really stupid....
+        # if lookAtNode is None:
+        #     targetPos = hou.Vector3(0,0,-1) * boneTransformMatrix
+        #     temp = boneNode.parent().createNode('null')
+        #     BasicFunc.setWorldPos(temp,targetPos[0],targetPos[1],targetPos[2])
+        # else:
+        #     targetPos = BasicFunc.getWorldPos(lookAtNode)
+
+        targetPos = hou.Vector3(0, 0, -1) * boneTransformMatrix
+        # this kind of way is really stupid....
         direction = targetPos-selfPos
         sideDirection = direction.cross(hou.Vector3(0,1,0))
         sidePos = selfPos-sideDirection
@@ -36,11 +46,19 @@ class HumanControl(object):
         upVec = sideDirection.cross(direction)
         matrix = ctl.buildLookatRotation(sideEye,upVec)
         ctl.setWorldTransform(matrix)
-
         sideEye.destroy()
 
+        BasicFunc.set_transform_keeppos(ctl)
+        BasicFunc.set_transform_keeppos(boneNode)
 
-
+        nodeInputs = boneNode.inputs()
+        if nodeInputs is not None and len(nodeInputs) > 0:
+            BasicFunc.connect_node(nodeInputs[0], ctl)
+        BasicFunc.connect_node(ctl, boneNode)
+        BasicFunc.adjustLayout(ctl)
+        # ctl.parm('tx').lock(True)
+        # ctl.parm('ty').lock(True)
+        # ctl.parm('tz').lock(True)
 
 
 

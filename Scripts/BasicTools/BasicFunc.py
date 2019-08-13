@@ -66,7 +66,7 @@ class BasicFunc(object):
     def create_null_at_obj(targetNode, nodeName = None):
         selfPos = BasicFunc.getWorldPos(targetNode)
         earth = targetNode.parent()
-        print earth
+        # print earth
         ctl = earth.createNode('null')
         if nodeName is None:
             nodeName = 'ctl_' + targetNode.name()
